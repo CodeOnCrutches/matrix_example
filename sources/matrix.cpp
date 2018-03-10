@@ -170,7 +170,7 @@ matrix_t & matrix_t::operator -=(matrix_t const & other)
 	{
 		for (size_t j = 0; j < other.collumns_; j++)
 		{
-			elements_[i][j] -= other.elements_[i][j];
+			elements_[i][j] = elements_[i][j] - other.elements_[i][j];
 		}
 	}
 
