@@ -79,3 +79,37 @@ TEST_CASE("add, [oper+]")
     REQUIRE( C.read(add) );
     REQUIRE ( (A + B) == C);
 }
+
+TEST_CASE("sub [oper-]")
+{
+    std::string input{
+        "3, 3\n"
+        "2 2 2\n"
+        "2 2 2\n"
+        "2 2 2" };
+    std::string input_two
+    {
+        "3, 3\n"
+        "1 1 1\n"
+        "1 1 1\n"
+        "1 1 1"
+    };
+    matrix_t A;
+    matrix_t B;
+    std::istringstream istream{ input };
+    std::istringstream istream_two { input_two };
+    REQUIRE( A.read( istream ) );
+    REQUIRE( B.read( istream_two ) );
+    
+    std::string solution
+    {
+        "3, 3\n"
+        "1 1 1\n"
+        "1 1 1\n"
+        "1 1 1"
+    };
+    matrix_t C;
+    std::istringstream add{ solution };
+    REQUIRE( C.read(add) );
+    REQUIRE( (A - B) == C);
+}
