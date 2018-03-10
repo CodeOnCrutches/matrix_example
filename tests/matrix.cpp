@@ -59,11 +59,12 @@ TEST_CASE("add, [oper+]")
         "1 1 1\n"
         "1 1 1\n"
         "1 1 1"
-    }
+    };
     matrix_t A;
     matrix_t B;
     std::istringstream istream{ input };
     std::istringstream istream_two { input_two };
     REQUIRE( A.read( istream ) );
     REQUIRE( B.read( istream_two ) );
+
 }
