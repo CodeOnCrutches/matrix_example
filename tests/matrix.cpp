@@ -66,5 +66,16 @@ TEST_CASE("add, [oper+]")
     std::istringstream istream_two { input_two };
     REQUIRE( A.read( istream ) );
     REQUIRE( B.read( istream_two ) );
-
+    
+    std::string solution
+    {
+        "3, 3\n"
+        "3 3 3\n"
+        "3 3 3\n"
+        "3 3 3"
+    };
+    matrix_t C;
+    std::istringstream add{ solution };
+    REQUIER( C.read(add) );
+    REQIUER ( (A + B) == C);
 }
