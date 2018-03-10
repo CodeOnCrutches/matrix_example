@@ -76,6 +76,6 @@ TEST_CASE("add, [oper+]")
     };
     matrix_t C;
     std::istringstream add{ solution };
-    REQUIER( C.read(add) );
-    REQIUER ( (A + B) == C);
+    REQUIRE( C.read(add) );
+    REQUIRE ( (A + B) == C);
 }
