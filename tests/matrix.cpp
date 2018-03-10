@@ -39,6 +39,8 @@ TEST_CASE("matrix copy")
         "3 3 3" };
     matrix_t matrix;
     std::istringstream istream{ input };
+    REQUIRE( matrix.read( istream ) );
+    
     matrix_t copy(matrix);
     REQUIRE( copy.rows() == 3 );
     REQUIRE( copy.collumns() == 3 );
