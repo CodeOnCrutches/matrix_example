@@ -27,7 +27,9 @@ bool matrix_t::operator==(matrix_t const & other) const
 		for (size_t j = 0; j < collumns_; j++)
 		{
 			if (elements_[i][j] != other.elements_[i][j])
+			{
 				return false;
+			}
 		}
 	}
 
