@@ -34,6 +34,6 @@ TEST_CASE("matrix copy")
 {
     matrix_t matrix;
     matrix_t copy(matrix);
-    REQUIRE( copy.rows() == 0 );
-    REQUIRE( copy.collumns() == 0 );
+    REQUIRE( copy.rows == 0 );
+    REQUIRE( copy.collumns == 0 );
 }
