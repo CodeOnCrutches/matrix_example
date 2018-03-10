@@ -20,6 +20,20 @@ matrix_t::matrix_t(matrix_t const & other)
 	}
 }
 
+bool matrix_t::operator==(matrix_t const & other) const
+{
+	for (size_t i = 0; i < rows_; i++)
+	{
+		for (size_t j = 0; j < collumns_; j++)
+		{
+			if (elements_[i][j] != other.elements_[i][j])
+				return false;
+		}
+	}
+
+	return true;
+}
+
 matrix_t & matrix_t::operator =(matrix_t const & other)
 {
 	for (size_t i = 0; i < collumns_; i++)
