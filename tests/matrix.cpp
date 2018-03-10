@@ -45,3 +45,25 @@ TEST_CASE("matrix copy")
     REQUIRE( copy.rows() == 3 );
     REQUIRE( copy.collumns() == 3 );
 }
+
+TEST_CASE("add, [oper+]")
+{
+    std::string input{
+        "3, 3\n"
+        "2 2 2\n"
+        "2 2 2\n"
+        "2 2 2" };
+    std::string input_two
+    {
+        "3, 3\n"
+        "1 1 1\n"
+        "1 1 1\n"
+        "1 1 1"
+    }
+    matrix_t A;
+    matrix_t B;
+    std::istringstream istream{ input };
+    std::istringstream istream_two { input_two };
+    REQUIRE( matrix.read( istream ) );
+    REQUIRE( matrix.read( istream_two ) );
+}
