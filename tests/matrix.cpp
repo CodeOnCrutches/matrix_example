@@ -64,6 +64,6 @@ TEST_CASE("add, [oper+]")
     matrix_t B;
     std::istringstream istream{ input };
     std::istringstream istream_two { input_two };
-    REQUIRE( matrix.read( istream ) );
-    REQUIRE( matrix.read( istream_two ) );
+    REQUIRE( A.read( istream ) );
+    REQUIRE( B.read( istream_two ) );
 }
