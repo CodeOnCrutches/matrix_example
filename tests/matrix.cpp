@@ -29,3 +29,11 @@ TEST_CASE("reading matrix")
     
     REQUIRE( input == ostream.str() );
 }
+
+TEST_CASE("matrix copy")
+{
+    matrix_t matrix;
+    matrix_t copy(matrix);
+    REQUIRE( copy.rows() == 0 );
+    REQUIRE( copy.collumns() == 0 );
+}
