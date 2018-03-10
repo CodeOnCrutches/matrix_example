@@ -32,9 +32,13 @@ TEST_CASE("reading matrix")
 
 TEST_CASE("matrix copy")
 {
+       std::string input{
+        "3, 3\n"
+        "1 1 1\n"
+        "2 2 2\n"
+        "3 3 3" };
     matrix_t matrix;
-    matrix.rows_ = 3;
-    matrix.collumns = 3;
+    std::istringstream istream{ input };
     matrix_t copy(matrix);
     REQUIRE( copy.rows() == 3 );
     REQUIRE( copy.collumns() == 3 );
