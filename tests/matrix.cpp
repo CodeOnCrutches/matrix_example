@@ -80,7 +80,7 @@ TEST_CASE("add, [oper+]")
     REQUIRE ( (A + B) == C);
 }
 
-TEST_CASE("sub [oper-]")
+TEST_CASE("sub, [oper-]")
 {
     std::string input{
         "3, 3\n"
@@ -114,7 +114,7 @@ TEST_CASE("sub [oper-]")
     REQUIRE( (A - B) == C);
 }
 
-TEST_CASE("mul [oper*]")
+TEST_CASE("mul, [oper*]")
 {
     std::string input{
         "3, 3\n"
@@ -148,7 +148,7 @@ TEST_CASE("mul [oper*]")
     REQUIRE( (A * B) == C);
 }
     
-TEST_CASE("sub [oper-=]")
+TEST_CASE("MINUS, [oper-=]")
 {
     std::string input{
         "3, 3\n"
@@ -164,11 +164,11 @@ TEST_CASE("sub [oper-=]")
     };
     matrix_t A;
     matrix_t B;
-    
+    matrix_t C;
     std::istringstream istream{ input };
     std::istringstream istream_two { input_two };
     REQUIRE( A.read( istream ) );
     REQUIRE( B.read( istream_two ) );
-    
-    REQUIRE( (A -= B) == ( A = A - B) );
+    C = A - B;
+    REQUIRE( (A -= B) == C );
 }
