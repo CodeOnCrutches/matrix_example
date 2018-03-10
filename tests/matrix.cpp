@@ -33,6 +33,8 @@ TEST_CASE("reading matrix")
 TEST_CASE("matrix copy")
 {
     matrix_t matrix;
+    matrix.rows_ = 0;
+    matrix.collumns = 0;
     matrix_t copy(matrix);
     REQUIRE( copy.rows() == 0 );
     REQUIRE( copy.collumns() == 0 );
