@@ -20,9 +20,10 @@ matrix_t::matrix_t(matrix_t const & other)
 	}
 }
 
-matrix_t & matrix_t::operator =(matrix_t const & other)
+matrix_t & matrix_t::operator=(matrix_t const & other)
 {
-	if (this != &other) {
+	if (this != &other) 
+	{	
 		for (size_t i = 0; i < collumns_; i++)
 		{
 			delete[]elements_[i];
@@ -88,7 +89,7 @@ std::size_t matrix_t::collumns() const
 matrix_t matrix_t::operator +(matrix_t const & other) const
 {
 	
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+	//assert(rows_ == other.rows_ && collumns_ == other.collumns_);
 
 	matrix_t result;
 
