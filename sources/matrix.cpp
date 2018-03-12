@@ -263,8 +263,3 @@ std::ostream & matrix_t::write(std::ostream & stream) const
 
 	return stream;
 }
-
-int main()
-{
-
-}
