@@ -112,7 +112,7 @@ matrix_t matrix_t::operator +(matrix_t const & other) const
 	return result;
 }
 
-matrix_t matrix_t::operator -(matrix_t const & other) const
+matrix_t matrix_t::operator - (matrix_t const & other) const
 {
 	matrix_t result;
 
