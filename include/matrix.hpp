@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 class matrix_t {
 private:
