@@ -176,7 +176,7 @@ TEST_CASE("MINUS, [oper-=]")
     std::istringstream istream_res { res_input };
     std::istringstream istream { input };
     std::istringstream istream_two { input_two };
-    REQUIRE( C.read( res_input) );
+    REQUIRE( C.read( istream_res ) );
     REQUIRE( A.read( istream ) );
     REQUIRE( B.read( istream_two ) );
     REQUIRE( (A -= B) == C );
