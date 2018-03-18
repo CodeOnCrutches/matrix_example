@@ -218,11 +218,14 @@ TEST_CASE("add, [oper+=]")
 
 TEST_CASE("mul, [oper*=]")
 {
-            std::string input{
+    std::string input
+    {
         "3, 3\n"
         "2 2 2\n"
         "2 2 2\n"
-        "2 2 2" };
+        "2 2 2" 
+    };
+    
     std::string input_two
     {
         "3, 3\n"
