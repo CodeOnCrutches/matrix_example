@@ -216,9 +216,9 @@ TEST_CASE("add, [oper+=]")
     REQUIRE( ( A += B ) == C );
 }
 
-TEST_CASE("mul, [oper*=]")
+TEST_CASE("multi, [oper*=]")
 {
-    std::string input
+    std::string input_A
     {
         "3, 3\n"
         "2 2 2\n"
@@ -226,14 +226,14 @@ TEST_CASE("mul, [oper*=]")
         "2 2 2" 
     };
     
-    std::string input_two
+    std::string input_B
     {
         "3, 3\n"
         "1 1 1\n"
         "1 1 1\n"
         "1 1 1"
     };
-    std::string res_input
+    std::string intput_C
     {
         "3, 3\n"
         "6 6 6\n"
@@ -244,11 +244,14 @@ TEST_CASE("mul, [oper*=]")
     matrix_t A;
     matrix_t B;
     matrix_t C;
-    std::istringstream istream_res { res_input };
-    std::istringstream istream { input };
-    std::istringstream istream_two { input_two };
-    REQUIRE( C.read( istream_res ) );
-    REQUIRE( A.read( istream ) );
-    REQUIRE( B.read( istream_two ) );
-    REQUIRE( ( A *= B ) == C);
+    
+    std::istringstream istream_A { input_A };
+    std::istringstream istream_B { input_B };
+    std::istringstream istream_C { input_C };
+   
+    REQUIRE( A.read( istream_A ) );
+    REQUIRE( B.read( istream_B ) ); 
+    REQUIRE( C.read( istream_C ) );
+    
+    REQUIRE( ( A * B ) == C);
 }
