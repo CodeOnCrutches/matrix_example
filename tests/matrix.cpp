@@ -254,5 +254,5 @@ TEST_CASE("multi, [oper*=]")
     REQUIRE( B.read( istream_B ) ); 
     REQUIRE( C.read( istream_C ) );
     
-    REQUIRE( ( A * B ) == C);
+    REQUIRE( ( A *= B ) == C);
 }
