@@ -37,6 +37,7 @@ TEST_CASE("matrix copy")
         "1 1 1\n"
         "2 2 2\n"
         "3 3 3" };
+    
     matrix_t matrix;
     std::istringstream istream{ input };
     REQUIRE( matrix.read( istream ) );
