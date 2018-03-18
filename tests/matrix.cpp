@@ -162,13 +162,22 @@ TEST_CASE("MINUS, [oper-=]")
         "1 1 1\n"
         "1 1 1"
     };
+    std::string res_input
+    {
+        "3, 3\n"
+        "1 1 1\n"
+        "1 1 1\n"
+        "1 1 1"
+    };
+    
     matrix_t A;
     matrix_t B;
     matrix_t C;
-    std::istringstream istream{ input };
+    std::istringstream istream_res { res_input };
+    std::istringstream istream { input };
     std::istringstream istream_two { input_two };
+    REQUIRE( C.read( res_input) );
     REQUIRE( A.read( istream ) );
     REQUIRE( B.read( istream_two ) );
-    REQUIRE( C = A - B );
     REQUIRE( (A -= B) == C );
 }
