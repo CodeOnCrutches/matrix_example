@@ -200,7 +200,7 @@ matrix_t & matrix_t::operator +=(matrix_t const & other)
 
 matrix_t & matrix_t::operator *=(matrix_t const & other)
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+	
 	*this=*this * other;
 	//matrix_t copy(*this);
 
