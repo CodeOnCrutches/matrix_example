@@ -234,7 +234,7 @@ TEST_CASE("multi, [oper*=]")
         "1 1 1\n"
         "1 1 1"
     };
-    std::string intput_C
+    std::string input_C
     {
         "3, 3\n"
         "6 6 6\n"
