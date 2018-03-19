@@ -140,7 +140,7 @@ matrix_t matrix_t::operator -(matrix_t const & other) const
 
 matrix_t matrix_t::operator *(matrix_t const & other) const
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+	assert(rows_ == other.collumns_);
 
 	matrix_t result;
 
