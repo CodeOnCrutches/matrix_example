@@ -170,8 +170,6 @@ matrix_t matrix_t::operator *(matrix_t const & other) const
 
 matrix_t & matrix_t::operator -=(matrix_t const & other)
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
-
 	for (size_t i = 0; i < rows_; i++)
 	{
 		for (size_t j = 0; j < collumns_; j++)
@@ -185,8 +183,6 @@ matrix_t & matrix_t::operator -=(matrix_t const & other)
 
 matrix_t & matrix_t::operator +=(matrix_t const & other)
 {
-	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
-
 	for (size_t i = 0; i < rows_; i++)
 	{
 		for (size_t j = 0; j < collumns_; j++)
@@ -199,7 +195,7 @@ matrix_t & matrix_t::operator +=(matrix_t const & other)
 }
 
 matrix_t & matrix_t::operator *=(matrix_t const & other)
-{
+{	
 	matrix_t copy(*this);
 	*this = copy * other;
 
