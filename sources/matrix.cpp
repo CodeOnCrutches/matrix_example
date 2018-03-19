@@ -200,11 +200,8 @@ matrix_t & matrix_t::operator +=(matrix_t const & other)
 
 matrix_t & matrix_t::operator *=(matrix_t const & other)
 {
-	
-	*this=*this * other;
-	//matrix_t copy(*this);
-
-	//*this = copy * other;
+	matrix_t copy(*this);
+	*this = copy * other;
 
 	return *this;
 }
