@@ -30,12 +30,12 @@ public:
 	std::ostream & write(std::ostream  & stream) const;
 };
 
-tamplate<typename T>
+template<typename T>
 matrix_t<T>::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
 {
 }
 
-tempplate<typename T>
+template<typename T>
 matrix_t<T>::matrix_t(matrix_t const & other)
 {
 	rows_ = other.rows_;
@@ -80,7 +80,7 @@ matrix_t<T> & matrix_t<T>::operator =(matrix_t const & other)
 }
 
 template <typename T>
-bool matrix_t::operator==(matrix_t const & other) const
+bool matrix_t<T>::operator==(matrix_t const & other) const
 {
 	if (rows_ != other.rows_ || collumns_ != other.collumns_)
 	{
