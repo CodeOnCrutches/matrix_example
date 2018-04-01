@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cassert>
 
-template<typename T>
+template <typename T>
 class matrix_t {
 private:
 	T * * elements_;
@@ -29,56 +29,84 @@ public:
 	std::ostream & write(std::ostream  & stream) const;
 };
 
-template<typename T>
+tamplate<typename T>
 matrix_t<T>::matrix_t() : elements_{ nullptr }, rows_{ 0 }, collumns_{ 0 }
 {
 }
 
-template<typename T>
+tempplate<typename T>
 matrix_t<T>::matrix_t(matrix_t const & other)
 {
-	elements_ = new T *[other.rows_];
-	for (std::size_t i = 0; i < other.rows_; i++)
+	rows_ = other.rows_;
+	collumns_ = other.collumns_;
+
+	elements_ = new T * [rows_];
+	for (size_t i = 0; i < rows_; i++)
 	{
-		elements_[i] = new T[other.collumns_];
-		for (std::size_t j = 0; j < other.collumns_; j++)
+		elements_[i] = new T[collumns_];
+		for (size_t j = 0; j < collumns_; j++)
 		{
 			elements_[i][j] = other.elements_[i][j];
 		}
-		rows_ = other.rows_;
-		collumns_ = other.collumns_;
 	}
 }
 
-template<typename T>
+template <typename T>
 matrix_t<T> & matrix_t<T>::operator =(matrix_t const & other)
 {
-	if (this == &other)
-	{
-		return *this;
-	}
-	elements_ = new T *[other.rows_];
-	for (std::size_t i = 0; i < other.rows_; i++)
-	{
-		elements_[i] = new T[other.collumns_];
-		for (std::size_t j = 0; j < other.collumns_; j++)
+	if (this != &other) {
+		for (size_t i = 0; i < collumns_; i++)
 		{
-			elements_[i][j] = other.elements_[i][j];
+			delete[]elements_[i];
 		}
+		delete[]elements_;
+
 		rows_ = other.rows_;
 		collumns_ = other.collumns_;
+
+		elements_ = new T *[rows_];
+		for (size_t i = 0; i < rows_; i++)
+		{
+			elements_[i] = new T [collumns_];
+			for (size_t j = 0; j < collumns_; i++)
+			{
+				elements_[i][j] = other.elements_[i][j];
+			}
+		}
 	}
+
 	return *this;
+}
+
+template <typename T>
+bool matrix_t::operator==(matrix_t const & other) const
+{
+	if (rows_ != other.rows_ || collumns_ != other.collumns_)
+	{
+		return false;
+	}
+
+	for (size_t i = 0; i < rows_; i++)
+	{
+		for (size_t j = 0; j < collumns_; j++)
+		{
+			if (elements_[i][j] != other.elements_[i][j])
+				return false;
+		}
+	}
+
+	return true;
 }
 
 template <typename T>
 matrix_t<T>::~matrix_t()
 {
-	for (std::size_t i = 0; i < rows_; ++i)
+	for (size_t i = 0; i < rows_; i++)
 	{
-		delete[] elements_[i];
+		delete[]elements_[i];
 	}
-	delete[] elements_;
+
+	delete[]elements_;
 }
 
 template <typename T>
@@ -87,77 +115,95 @@ std::size_t matrix_t<T>::rows() const
 	return rows_;
 }
 
-template <typename T>
+template<typename T>
 std::size_t matrix_t<T>::collumns() const
 {
 	return collumns_;
 }
 
-template<typename T>
+template <typename T>
 matrix_t<T> matrix_t<T>::operator +(matrix_t const & other) const
 {
-	assert(collumns_ == other.collumns() && rows_ == other.rows());
+	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+
 	matrix_t result;
-	result.elements_ = new T *[rows_];
-	for (std::size_t i = 0; i < rows_; ++i)
+
+	result.elements_ = new T * [other.rows_];
+	for (size_t i = 0; i < other.rows_; i++)
 	{
-		result.elements_[i] = new T[collumns_];
-		for (std::size_t j = 0; j < collumns_; ++j)
+		result.elements_[i] = new T [other.collumns_];
+	}
+
+	for (size_t i = 0; i < other.rows_; i++)
+	{
+		for (size_t j = 0; j < other.collumns_; j++)
 		{
 			result.elements_[i][j] = elements_[i][j] + other.elements_[i][j];
 		}
 	}
+
 	result.rows_ = rows_;
 	result.collumns_ = collumns_;
+
 	return result;
 }
 
-template<typename T>
-matrix_t<T> matrix_t<T>::operator -(matrix_t const & other) const
+template <typename T>
+matrix_t matrix_t::operator -(matrix_t const & other) const
 {
-	assert(collumns_ == other.collumns() && rows_ == other.rows());
+	assert(rows_ == other.rows_ && collumns_ == other.collumns_);
+
 	matrix_t result;
-	result.elements_ = new T *[rows_];
-	for (std::size_t i = 0; i < rows_; ++i)
+
+	result.elements_ = new T *[other.rows_];
+	for (size_t i = 0; i < other.rows_; i++)
 	{
-		result.elements_[i] = new T[collumns_];
-		for (std::size_t j = 0; j < collumns_; ++j)
+		result.elements_[i] = new T [other.collumns_];
+	}
+
+	for (size_t i = 0; i < other.rows_; i++)
+	{
+		for (size_t j = 0; j < other.collumns_; j++)
 		{
 			result.elements_[i][j] = elements_[i][j] - other.elements_[i][j];
 		}
 	}
-	result.rows_ = rows_;
-	result.collumns_ = collumns_;
+
+	result.rows_ = other.rows_;
+	result.collumns_ = other.collumns_;
+
+
 	return result;
 }
 
-template<typename T>
+template <typename T>
 matrix_t<T> matrix_t<T>::operator *(matrix_t const & other) const
 {
 	assert(collumns_ == other.rows());
+
 	matrix_t result;
-	result.elements_ = new T *[rows_];
-	for (std::size_t i = 0; i < rows_; i++)
+
+	result.elements_ = new T * [rows_];
+	for (size_t i = 0; i < rows_; i++)
 	{
-		result.elements_[i] = new T[collumns_];
-		for (std::size_t j = 0; j < collumns_; j++)
+		result.elements_[i] = new T [other.collumns_];
+	}
+
+	for (size_t i = 0; i < rows_; i++)
+	{
+		for (size_t j = 0; j < other.collumns_; j++)
 		{
 			result.elements_[i][j] = 0;
-		}
-	}
-	for (std::size_t i = 0; i < rows_; i++)
-	{
-		for (std::size_t j = 0; j < other.collumns_; j++)
-		{
-			for (std::size_t z = 0; z < collumns_; z++)
+			for (size_t k = 0; k < collumns_; k++)
 			{
-				result.elements_[i][j] += elements_[i][z] * other.elements_[z][j];
+				result.elements_[i][j] += elements_[i][k] * other.elements_[k][j];
 			}
 		}
 	}
-	/* умножение строку первой матрицы на столбец второй, чтобы получить столбец третьей*/
+
 	result.rows_ = rows_;
 	result.collumns_ = other.collumns_;
+
 	return result;
 }
 
@@ -171,6 +217,7 @@ matrix_t<T> & matrix_t<T>::operator -=(matrix_t const & other)
 			elements_[i][j] -= other.elements_[i][j];
 		}
 	}
+
 	return *this;
 }
 
@@ -188,14 +235,15 @@ matrix_t<T> & matrix_t<T>::operator +=(matrix_t const & other)
 	return *this;
 }
 
-template <typename T>
 matrix_t<T> & matrix_t<T>::operator *=(matrix_t const & other)
-{
-	*this = *this * other;
+{	
+	matrix_t copy(*this);
+	*this = copy * other;
+
 	return *this;
 }
 
-template<typename T>
+template <typename T>
 std::istream & matrix_t<T>::read(std::istream & stream)
 {
 	std::size_t rows;
